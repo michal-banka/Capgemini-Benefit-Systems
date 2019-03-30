@@ -13,9 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by MichalPC on 2018-04-25, 00:37.
- */
 
 @RestController
 @RequestMapping("/api/producer")
@@ -24,7 +21,6 @@ public class MyRestController {
     public List<ProducerDto> getAllProducers() {
         RestTemplate restTemplate = new RestTemplate();
         final String URL = "http://localhost:8081/api/producer/all";
-
         ResponseEntity<ProducerDto[]> response
                 = restTemplate.exchange(URL, HttpMethod.GET, null, ProducerDto[].class);
         System.out.println(response.getHeaders());

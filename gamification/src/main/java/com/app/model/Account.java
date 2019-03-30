@@ -4,10 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-/**
- * Created by MichalPC on 2018-03-07, 00:45.
- */
-
 
 
 @Getter

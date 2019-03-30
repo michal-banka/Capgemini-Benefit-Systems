@@ -6,9 +6,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-/**
- * Created by MichalPC on 2018-03-07, 00:45.
- */
 
 
 

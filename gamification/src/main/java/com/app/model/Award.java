@@ -1,15 +1,10 @@
 package com.app.model;
 import lombok.*;
-import org.hibernate.annotations.JoinColumnOrFormula;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.sql.Date;
 import java.time.LocalDate;
 
-/**
- * Created by MichalPC on 2018-03-07, 00:45.
- */
+
 
 
 
