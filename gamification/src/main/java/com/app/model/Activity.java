@@ -3,10 +3,9 @@ package com.app.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
-import java.time.LocalDate;
 /**
  * Created by MichalPC on 2018-03-07, 00:45.
  */
@@ -37,6 +36,9 @@ public class Activity{
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "projectId")
     Project project;
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "activity")
+    List<ActivityResult> activityResults = new ArrayList<>();
 
 }
 

@@ -1,7 +1,7 @@
 package com.app.model;
 import com.app.model.enums.Role;
 import lombok.*;
-import org.hibernate.annotations.JoinColumnOrFormula;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +35,12 @@ public class User{
     Account account;
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     List<Award> awards = new ArrayList<>();
+
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+    List<ActivityResult> activityResults = new ArrayList<>();
+
+
 
 
 }
