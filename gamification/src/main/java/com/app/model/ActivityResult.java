@@ -19,13 +19,22 @@ public class ActivityResult {
     @EmbeddedId
     ActivityResultId id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinColumn(name = "activityId")
+    /*@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "activityId",insertable=false, updatable=false)
     Activity activity;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId")
-    User user;
+    @JoinColumn(name = "userId", insertable=false, updatable=false)
+    User user;*/
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("activityId")
+    private Activity activity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("userId")
+    private User user;
 
     @Column(name="dateOfReceipt")
     LocalDate dateOfReceipt;

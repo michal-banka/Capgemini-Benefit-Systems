@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @Builder
 public class AcitivityResultDto {
 
-    private Long id;
     private Long activityId;
     private Long userId;
     private LocalDate dateOfReceipt;
