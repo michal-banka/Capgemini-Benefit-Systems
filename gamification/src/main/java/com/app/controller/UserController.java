@@ -1,66 +1,34 @@
 package com.app.controller;
 
-import com.app.model.dto.UserDto;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import com.app.model.Account;
+import com.app.model.dao.AccountDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 
-    @GetMapping("/")
-    public List<UserDto> getAllUsers() {
-        RestTemplate restTemplate = new RestTemplate();
-        final String URL = "http://localhost:8080/api/user";
-        ResponseEntity<UserDto[]> response
-                = restTemplate.exchange(URL, HttpMethod.GET, null, UserDto[].class);
-        System.out.println(response.getHeaders());
-        System.out.println(response.getStatusCode());
-        System.out.println(response.getStatusCodeValue());
-        return Arrays.asList(response.getBody());
+    private final AccountDao accountDao;
+
+    @Autowired
+    public UserController(AccountDao accountDao) {
+        this.accountDao = accountDao;
+    }
+
+
+    @GetMapping("/all")
+    public List<Account> getAllUsers() {
+        return accountDao.findAll();
     }
 
     @GetMapping("/{id}")
-    public UserDto getUserById(@PathVariable Long id) {
-        RestTemplate restTemplate = new RestTemplate();
-        final String URL = "http://localhost:8080/api/user/{id}";
-
-        Map<String, String> params = new HashMap<>();
-        params.put("id", id.toString());
-
-        ResponseEntity<UserDto> response
-                = restTemplate.exchange(URL, HttpMethod.GET, null, UserDto.class, params);
-        System.out.println(response.getHeaders());
-        System.out.println(response.getStatusCode());
-        System.out.println(response.getStatusCodeValue());
-        return response.getBody();
+    public Account getUserById(@PathVariable Long id) {
+        return accountDao.findById(id).orElseThrow(NullPointerException::new);
     }
-
-    /*@GetMapping("/add")
-    public UserDto addUser() {
-        RestTemplate restTemplate = new RestTemplate();
-        final String URL = "http://localhost:8080/api/user/add";
-
-        HttpEntity<UserDto> entity
-                = new HttpEntity<>(UserDto.builder().email("SII").name("PL").surname("ll").role("ADMINISTRATOR").build());
-
-        ResponseEntity<UserDto> response
-                = restTemplate.exchange(URL, HttpMethod.POST, entity, UserDto.class);
-        System.out.println(response.getHeaders());
-        System.out.println(response.getStatusCode());
-        System.out.println(response.getStatusCodeValue());
-        return response.getBody();
-    }*/
-
-
 }
