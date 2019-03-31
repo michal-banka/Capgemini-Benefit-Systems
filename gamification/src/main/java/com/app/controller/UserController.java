@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping("/")
     public List<UserDto> getAllUsers() {
         RestTemplate restTemplate = new RestTemplate();
-        final String URL = "http://localhost:8081/api/user";
+        final String URL = "http://localhost:8080/api/user";
         ResponseEntity<UserDto[]> response
                 = restTemplate.exchange(URL, HttpMethod.GET, null, UserDto[].class);
         System.out.println(response.getHeaders());
@@ -33,7 +33,7 @@ public class UserController {
     @GetMapping("/{id}")
     public UserDto getUserById(@PathVariable Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        final String URL = "http://localhost:8081/api/user/{id}";
+        final String URL = "http://localhost:8080/api/user/{id}";
 
         Map<String, String> params = new HashMap<>();
         params.put("id", id.toString());
@@ -45,5 +45,22 @@ public class UserController {
         System.out.println(response.getStatusCodeValue());
         return response.getBody();
     }
+
+    /*@GetMapping("/add")
+    public UserDto addUser() {
+        RestTemplate restTemplate = new RestTemplate();
+        final String URL = "http://localhost:8080/api/user/add";
+
+        HttpEntity<UserDto> entity
+                = new HttpEntity<>(UserDto.builder().email("SII").name("PL").surname("ll").role("ADMINISTRATOR").build());
+
+        ResponseEntity<UserDto> response
+                = restTemplate.exchange(URL, HttpMethod.POST, entity, UserDto.class);
+        System.out.println(response.getHeaders());
+        System.out.println(response.getStatusCode());
+        System.out.println(response.getStatusCodeValue());
+        return response.getBody();
+    }*/
+
 
 }

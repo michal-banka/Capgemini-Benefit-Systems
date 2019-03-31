@@ -1,7 +1,5 @@
 package com.app.model.dto;
 
-import com.app.model.User;
-import com.app.model.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

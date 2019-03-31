@@ -20,7 +20,7 @@ public class MyRestController {
     @GetMapping("/all")
     public List<ProducerDto> getAllProducers() {
         RestTemplate restTemplate = new RestTemplate();
-        final String URL = "http://localhost:8081/api/producer/all";
+        final String URL = "http://localhost:8080/api/producer/all";
         ResponseEntity<ProducerDto[]> response
                 = restTemplate.exchange(URL, HttpMethod.GET, null, ProducerDto[].class);
         System.out.println(response.getHeaders());
@@ -32,7 +32,7 @@ public class MyRestController {
     @GetMapping("/{id}")
     public ProducerDto getProducerById(@PathVariable Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        final String URL = "http://localhost:8081/api/producer/{id}";
+        final String URL = "http://localhost:8080/api/producer/{id}";
 
         Map<String, String> params = new HashMap<>();
         params.put("id", id.toString());
@@ -48,7 +48,7 @@ public class MyRestController {
     @GetMapping("/add")
     public ProducerDto addProducer() {
         RestTemplate restTemplate = new RestTemplate();
-        final String URL = "http://localhost:8081/api/producer/add";
+        final String URL = "http://localhost:8080/api/producer/add";
 
         HttpEntity<ProducerDto> entity
                 = new HttpEntity<>(ProducerDto.builder().name("SII").nationality("PL").budget(BigDecimal.valueOf(100)).build());
